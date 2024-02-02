@@ -12,7 +12,7 @@ async function handle(
   const targetUrl = `${protocol}://${subpath.join("/")}`;
 
   const method = req.headers.get("method") ?? undefined;
-  const shouldNotHaveBody = ["get", "head"].includes(
+  const shouldNotHaveBody = ["get", "head", "mkcol"].includes(
     method?.toLowerCase() ?? "",
   );
 
@@ -28,7 +28,7 @@ async function handle(
 
   const fetchResult = await fetch(targetUrl, fetchOptions);
 
-  console.log("[Any Proxy]", targetUrl, {
+  console.log("[Any Proxy]", targetUrl, fetchOptions, {
     status: fetchResult.status,
     statusText: fetchResult.statusText,
   });
